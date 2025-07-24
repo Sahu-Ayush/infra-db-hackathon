@@ -17,10 +17,10 @@ resource "google_cloud_run_service" "finai" {
             cpu    = "1000m"
           }
         }
-        env {
-          name = "PORT"
-          value = "8080"
-        }
+        # env {
+        #   name = "PORT"
+        #   value = "8080"
+        # }
         # env {
         #   name = "GEMINI_API_KEY"
         #   value_from {

@@ -20,11 +20,12 @@ module "artifact_registry" {
 
 module "secret_manager" {
   source                = "./modules/secret_manager"
-  project               = var.project_id
+  project_id            = var.project_id
   secret_name           = "gemini-api-key"
-  secret_value          = "dummy-not-required" # empty -> secret only, value to be uploaded manually
+  secret_value          = "dummy-not-required"
   service_account_email = module.service_account.service_account_email
 }
+
 
 module "storage" {
   source        = "./modules/storage"
@@ -60,10 +61,9 @@ module "iam_bindings" {
   project_id               = var.project_id
   service_account_email = module.service_account.service_account_email
   roles = [
-    "roles/aiplatform.user",
-    "roles/vision.user",
-    "roles/texttospeech.user",
-    "roles/storage.objectViewer",
-    "roles/secretmanager.secretAccessor"
+  "roles/aiplatform.user",
+  "roles/secretmanager.secretAccessor",
+  "roles/storage.objectViewer",
+  "roles/editor"
   ]
 }
